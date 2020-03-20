@@ -1,0 +1,66 @@
+---
+title: Setup Gatsby and Tailwindcss
+name: gatsby-and-tailwind
+tags:
+  - setup
+  - gatsby
+  - tailwindcss
+  - postcss
+  - purgecss
+---
+
+Production ready **gatsby + tailwindcss** setup.
+
+Uses **gatsby-plugin-postcss** and **gatsby-plugin-purgecss** in combination with **tailwindcss** and **autoprefixer**.
+
+---
+
+**Install Dependencies**
+
+```bash
+npm install --save gatsby-plugin-postcss gatsby-plugin-purgecss autoprefixer tailwindcss
+```
+
+**Generate tailwind config (optional)**
+
+```bash
+npx tailwindcss init
+```
+
+**Configure gatsby and PostCSS**
+
+In `gatsby-config.js`:
+
+```js
+module.exports = {
+  // ...
+  plugins: [
+    // ...
+
+    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        printRejected: true,
+        develop: false,
+        tailwind: true
+        // whitelist: [],
+        // ignore: [],
+        // purgeOnly : [],
+      }
+    }
+
+    // ...
+  ]
+}
+```
+
+In `postcss.config.js`:
+
+```js
+module.exports = {
+  plugins: [require("tailwindcss"), require("autoprefixer")]
+}
+```
+
+This setup will purge unused css classes in production (or on build) only.

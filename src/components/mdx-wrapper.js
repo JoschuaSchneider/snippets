@@ -57,6 +57,9 @@ const components = {
       />
     )
   },
+  hr: props => {
+    return <hr {...props} className={classnames("my-6", props.className)} />
+  },
   strong: props => {
     return (
       <strong
@@ -68,6 +71,11 @@ const components = {
   pre: props => {
     const className = props.children.props.className || ""
     const matches = className.match(/language-(?<lang>.*)/)
+
+    const language =
+      matches && matches.groups && matches.groups.lang
+        ? matches.groups.lang
+        : ""
 
     const removeEmptyLineAtEnd = tokens => {
       const lastToken = tokens[tokens.length - 1]
@@ -83,25 +91,24 @@ const components = {
         {...defaultProps}
         theme={theme}
         code={props.children.props.children}
-        language={
-          matches && matches.groups && matches.groups.lang
-            ? matches.groups.lang
-            : ""
-        }
+        language={language}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre
-            className="rounded overflow-auto py-4 px-6 mt-6 mb-6 text-sm"
-            style={style}
-          >
-            {removeEmptyLineAtEnd(tokens).map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </pre>
+          <div className="code-block my-6">
+            <div className="code-block-language">{language.toUpperCase()}</div>
+            <pre
+              className="rounded overflow-auto py-6 px-6 text-sm"
+              style={style}
+            >
+              {removeEmptyLineAtEnd(tokens).map((line, i) => (
+                <div {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    <span {...getTokenProps({ token, key })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          </div>
         )}
       </Highlight>
     )

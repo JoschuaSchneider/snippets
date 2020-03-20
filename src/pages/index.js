@@ -9,12 +9,15 @@ const Index = ({
   }
 }) => (
   <Layout>
-    <p className="text-gray-700 mb-6">
-      This collection helps me to document often used hooks, components and
-      functions. I use it to boost my performance as a developer by compiling a
-      central database of solutions to problems I encounter or code I tend to
-      use often.
+    <SEO title="Browse" />
+    <p className="text-purple-800 mb-6 bg-purple-200 py-3 px-4 rounded">
+      This collection helps me to <b>document</b> often used hooks, components
+      and configurations/setups. I use this as a central database to boost my
+      efficiency as a developer. <br />
+      This helps keeping me (and maybe you) from finding solutions to problems
+      that have already been solved.
     </p>
+    <h2 className="text-gray-800 text-xl mb-3">Browse all snippets</h2>
     <div className="flex flex-col">
       {snippets.map(snippet => (
         <Link

@@ -5,4 +5,20 @@ html, body {
     @apply bg-gray-100;
 }
 
+.code-block {
+    position: relative;
+}
+
+.code-block .code-block-language {
+    -webkit-user-select: none;
+    @apply text-xs;
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    background: #5d4388;
+    padding: 2px 8px;
+    color: #e9e0f7;
+    border-radius: 0px 0px 3px 3px;
+}
+
 @import "tailwindcss/utilities";
