@@ -13,14 +13,15 @@ export default ({ data }) => {
       <SEO title={frontmatter.title} description={excerpt} />
       <Link
         to="/"
-        className="block mb-2 text-purple-700 hover:text-purple-800 hover:underline cursor:pointer"
+        className="block mb-4 text-purple-700 hover:text-purple-800 hover:underline cursor:pointer"
       >
         {"←"} Browse all snippets
       </Link>
-      <h2 className="text-3xl text-gray-800 mb-4">{frontmatter.title}</h2>
-      <div className="flex mb-6 px-4 py-1 border-l-4 border-purple-200">
+      <small className="block text-sm text-gray-600">{frontmatter.date} - Joschua Schneider</small>
+      <h2 className="text-3xl text-gray-800 mb-1">{frontmatter.title}</h2>
+      <div className="flex mb-6">
         {frontmatter.tags.map(tag => (
-          <div key={tag} className="bg-gray-200 rounded-sm mr-3 px-2">
+          <div key={tag} className="bg-gray-200 text-gray-700 text-sm rounded-sm mr-2 px-2">
             {tag}
           </div>
         ))}
@@ -39,6 +40,7 @@ export const pageQuery = graphql`
       excerpt(pruneLength: 190)
       frontmatter {
         title
+        date
         tags
       }
     }

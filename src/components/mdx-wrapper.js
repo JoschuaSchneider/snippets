@@ -18,35 +18,23 @@ const components = {
   },
   h1: props => {
     return (
-      <h1
-        {...props}
-        className={classnames(
-          "text-gray-900 mb-2 mt-6 text-3xl",
-          props.className
-        )}
-      />
+      <h1 className="text-gray-900 mb-2 mt-6 text-3xl font-semibold">
+        {props.children}
+      </h1>
     )
   },
   h2: props => {
     return (
-      <h2
-        {...props}
-        className={classnames(
-          "text-gray-900 mb-2 mt-6 text-2xl",
-          props.className
-        )}
-      />
+      <h2 className="text-gray-900 mb-2 mt-6 text-2xl font-semibold">
+        {props.children}
+      </h2>
     )
   },
   h3: props => {
     return (
-      <h3
-        {...props}
-        className={classnames(
-          "text-gray-900 mb-2 mt-6 text-xl",
-          props.className
-        )}
-      />
+      <h3 className="text-gray-900 mb-2 mt-6 text-xl font-semibold">
+        {props.children}
+      </h3>
     )
   },
   p: props => {
