@@ -1,0 +1,51 @@
+---
+title: Debounce state in React - useDebouncedValue
+name: use-debounced-value
+tags:
+  - react
+  - hook
+---
+
+Debounces another state values changes by the given delay.
+
+This can be used to debounce the execution of another effect tied to `search inputs` or other `fast changing values`.
+
+```js
+import { useState, useEffect } from "react"
+
+export default function useDebouncedValue(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedValue(value)
+    }, delay)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [value])
+
+  return debouncedValue
+}
+```
+
+### Usage
+
+Pass another state value and a delay to `useDebouncedValue`.
+
+```js
+function MyComponent() {
+  // Controls an input for example
+  const [searchText, setSearchText] = useState("")
+
+  // Only changes if 500ms passed after the last change of searchText
+  const debouncedSearchText = useDebouncedValue(searchText, 500)
+
+  useEffect(() => {
+    // Do some api calls
+  }, [debouncedSearchText])
+
+  // ...
+}
+```
