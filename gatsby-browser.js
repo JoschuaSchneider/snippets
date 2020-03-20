@@ -22,7 +22,10 @@ const component = {
     return (
       <h1
         {...props}
-        className={classnames("text-gray-900 mb-2 mt-6 text-3xl", props.className)}
+        className={classnames(
+          "text-gray-900 mb-2 mt-6 text-3xl",
+          props.className
+        )}
       />
     )
   },
@@ -30,7 +33,10 @@ const component = {
     return (
       <h2
         {...props}
-        className={classnames("text-gray-900 mb-2 mt-6 text-2xl", props.className)}
+        className={classnames(
+          "text-gray-900 mb-2 mt-6 text-2xl",
+          props.className
+        )}
       />
     )
   },
@@ -38,7 +44,10 @@ const component = {
     return (
       <h3
         {...props}
-        className={classnames("text-gray-900 mb-2 mt-6 text-xl", props.className)}
+        className={classnames(
+          "text-gray-900 mb-2 mt-6 text-xl",
+          props.className
+        )}
       />
     )
   },
@@ -84,18 +93,19 @@ const component = {
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
-            className={classnames(className, "rounded overflow-auto py-4 px-6 mt-6 mb-6 text-sm")}
+            className={classnames(
+              className,
+              "rounded overflow-auto py-4 px-6 mt-6 mb-6 text-sm"
+            )}
             style={{ backgroundColor: style.backgroundColor }}
           >
-            {removeEmptyLineAtEnd(tokens)
-              .filter(token => (console.log(token), true))
-              .map((line, i) => (
-                <div {...getLineProps({ line, key: i })}>
-                  {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
-                </div>
-              ))}
+            {removeEmptyLineAtEnd(tokens).map((line, i) => (
+              <div {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
           </pre>
         )}
       </Highlight>
