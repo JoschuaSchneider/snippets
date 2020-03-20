@@ -13,13 +13,13 @@ export default ({ data }) => {
       <h2 className="text-3xl text-gray-800 mb-4 border-l-4 border-purple-200 pl-4 -ml-4 pb-1">
         {frontmatter.title}
       </h2>
-      <p className="flex mb-6">
+      <div className="flex mb-6">
         {frontmatter.tags.map(tag => (
-          <pre key={tag} className="bg-gray-200 rounded-sm mr-3">
+          <div key={tag} className="bg-gray-200 rounded-sm mr-3">
             {tag}
-          </pre>
+          </div>
         ))}
-      </p>
+      </div>
       <MDXRenderer>{body}</MDXRenderer>
     </Layout>
   )
