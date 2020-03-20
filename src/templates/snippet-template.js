@@ -6,11 +6,11 @@ import SEO from "../components/seo"
 import MdxWrapper from "../components/mdx-wrapper"
 
 export default ({ data }) => {
-  const { body, frontmatter } = data.mdx
+  const { body, frontmatter, excerpt } = data.mdx
 
   return (
     <Layout>
-      <SEO title={frontmatter.title} />
+      <SEO title={frontmatter.title} description={excerpt} />
       <Link
         to="/"
         className="block mb-2 text-purple-700 hover:text-purple-800 hover:underline cursor:pointer"
@@ -36,6 +36,7 @@ export const pageQuery = graphql`
   query SnippetBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       body
+      excerpt(pruneLength: 190)
       frontmatter {
         title
         tags
