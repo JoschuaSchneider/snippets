@@ -82,7 +82,7 @@ const components = {
         language={language}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <div className="code-block my-6">
+          <div className="code-block mt-6 mb-8">
             <div className="code-block-language">{language.toUpperCase()}</div>
             <pre
               className="rounded overflow-auto py-6 px-6 text-sm"

@@ -21,11 +21,11 @@ export default ({ data }) => {
         {frontmatter.date} - {frontmatter.author}
       </small>
       <h2 className="text-2xl md:text-3xl text-gray-800 mb-4 leading-tight">{frontmatter.title}</h2>
-      <div className="flex mb-8">
+      <div className="flex flex-wrap mb-6">
         {frontmatter.tags.map(tag => (
           <div
             key={tag}
-            className="bg-gray-200 text-gray-700 text-sm rounded-sm mr-2 px-2"
+            className="bg-gray-200 text-gray-700 text-xs md:text-sm rounded-sm mr-2 mb-2 px-2"
           >
             {tag}
           </div>
