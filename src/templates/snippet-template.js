@@ -17,11 +17,16 @@ export default ({ data }) => {
       >
         {"←"} Browse all snippets
       </Link>
-      <small className="block text-sm text-gray-600">{frontmatter.date} - Joschua Schneider</small>
+      <small className="block text-sm text-gray-600">
+        {frontmatter.date} - {frontmatter.author}
+      </small>
       <h2 className="text-3xl text-gray-800 mb-1">{frontmatter.title}</h2>
       <div className="flex mb-6">
         {frontmatter.tags.map(tag => (
-          <div key={tag} className="bg-gray-200 text-gray-700 text-sm rounded-sm mr-2 px-2">
+          <div
+            key={tag}
+            className="bg-gray-200 text-gray-700 text-sm rounded-sm mr-2 px-2"
+          >
             {tag}
           </div>
         ))}
@@ -41,6 +46,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date
+        author
         tags
       }
     }
