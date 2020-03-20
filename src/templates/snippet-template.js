@@ -20,8 +20,8 @@ export default ({ data }) => {
       <small className="block text-sm text-gray-600">
         {frontmatter.date} - {frontmatter.author}
       </small>
-      <h2 className="text-3xl text-gray-800 mb-1">{frontmatter.title}</h2>
-      <div className="flex mb-6">
+      <h2 className="text-3xl text-gray-800 mb-3">{frontmatter.title}</h2>
+      <div className="flex mb-8">
         {frontmatter.tags.map(tag => (
           <div
             key={tag}
