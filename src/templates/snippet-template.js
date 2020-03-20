@@ -17,10 +17,10 @@ export default ({ data }) => {
       >
         {"←"} Browse all snippets
       </Link>
-      <small className="block text-sm text-gray-600">
+      <small className="block text-sm text-gray-600 mb-1">
         {frontmatter.date} - {frontmatter.author}
       </small>
-      <h2 className="text-3xl text-gray-800 mb-3">{frontmatter.title}</h2>
+      <h2 className="text-3xl text-gray-800 mb-4 leading-tight">{frontmatter.title}</h2>
       <div className="flex mb-8">
         {frontmatter.tags.map(tag => (
           <div
