@@ -1,0 +1,104 @@
+---
+title: Simple but powerful singular/plural string templating in vanilla JavaScript
+name: format-plural
+date: 20-03-2020
+author: Joschua Schneider
+tags:
+  - javascript
+  - templating
+  - higher-order-function
+  - react
+---
+
+When displaying text including numbers, formatting them in the correct grammar can be a little bit messy or
+can lead to a lot of duplication.
+
+This is a small higher-order-function I wrote to create a tagged-literal string formatter that switches the output between
+singular and plural depending on the passed number value.
+
+The template format is very simple and easily customizable.
+
+Lets start with the code:
+
+```js
+export function formatPlural(count, delimiter = "|") {
+  return (strings, ...values) => {
+    // Use plural for count !== 1 (0 uses plural -> "Showing 0 results" vs "Showing 0 result")
+    const isPlural = count !== 1
+    const resolveValue = value => {
+      if (!value) return ""
+      if (typeof value === "function") return value(isPlural, count)
+      return value
+    }
+
+    const resultString = strings.reduce(
+      (result, current, index) =>
+        `${result}${current}${resolveValue(values?.[index])}`,
+      ""
+    )
+
+    return resultString.replace(/\{(.*?)\}/g, (_, submatch1) => {
+      if (submatch1 === "count") return count
+
+      const [singular, plural] = submatch1.split(delimiter)
+      return isPlural ? plural : singular
+    })
+  }
+}
+```
+
+Lets use this function to create our formatter based on a number value.
+
+```js
+const searchResults = 5
+
+console.log(
+  formatPlural(searchResults)`Your search returned {count} result{|s}!`
+)
+// Output: Your search returned 5 results!
+```
+
+The syntax of the template string is quite simple. `{count}` gets replaced with the value passed to formatPlural.
+
+To switch output of parts of the string for singular/plural, you wite `{singular string|plural string}`.
+This gets resolved to either `singular string` or `plural string` accordingly.
+
+You can omit either side of the `|` (delimiter) as a shortcut to target either only singular or plural: `{|plural here!}`
+
+### React example
+
+We can create our formatter in our component (e.g. based on some sate or prop) and use it where we want.
+
+```jsx
+function SearchResults({ results, searchTerm }) {
+  const formatSearchResults = formatPlural(results.length)
+
+  return (
+    <div>
+      {formatSearchResults`There {were|was} {count} result{|s} for your search "${searchTerm}"`}
+    </div>
+  )
+}
+```
+
+### Advanced usage
+
+Thanks to the returned tagged-litteral-function, you can pass functions into the template string.
+
+This could be useful for more advanced usecases.
+The function gets passed `isPlural` and the current `count` and should return a string.
+
+The string returned from this function will also be treated and transformed as part of the template.
+
+```js
+const randomNumber = 5
+
+const formattingFunction = (isPlural, count) =>
+  count === randomNumber ? "you received {it|them}!" : "you missed {it|them}!"
+
+formatPlural(5)`Your item{|s} {was|were} shipped... ${formattingFunction}`
+// Output singular: Your item was shipped... you received it!
+// Output plural: Your items were shipped... you received them!
+```
+
+You can also customize the delimiter used inside the curly braces, just pass a custom one as a second parameter: `formatPlural(count, delimiter)`
