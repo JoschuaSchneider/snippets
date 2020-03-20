@@ -28,7 +28,7 @@ const Layout = ({ children }) => (
             Copyright &copy; {new Date().getFullYear()}{" "}
             <a
               className="bg-purple-100 hover:bg-purple-200 text-purple-700 rounded-sm"
-              href="https://joschuaschneider.de"
+              href="https://twitter.com/joschuadev"
             >
               Joschua Schneider
             </a>
