@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import MdxWrapper from "../components/mdx-wrapper"
 
 export default ({ data }) => {
   const { body, frontmatter } = data.mdx
@@ -20,7 +21,9 @@ export default ({ data }) => {
           </div>
         ))}
       </div>
-      <MDXRenderer>{body}</MDXRenderer>
+      <MdxWrapper>
+        <MDXRenderer>{body}</MDXRenderer>
+      </MdxWrapper>
     </Layout>
   )
 }
