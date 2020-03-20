@@ -24,12 +24,12 @@ const Index = ({
           to={snippet.fields.slug}
           className="rounded bg-white shadow py-4 px-6 border-l-4 border-purple-500 hover:border-purple-700 mb-6"
         >
-          <h3 className="text-gray-900 font-semibold">
+          <h3 className="text-gray-900 font-semibold leading-tight">
             {snippet.frontmatter.title}
           </h3>
-          <p className="flex mb-3 mt-2">
+          <p className="flex flex-wrap mb-1 mt-2">
             {snippet.frontmatter.tags.map(tag => (
-              <pre key={tag} className="bg-gray-200 rounded-sm mr-2 text-sm">
+              <pre key={tag} className="bg-gray-200 rounded-sm mr-1 mb-2 text-xs px-1">
                 {tag}
               </pre>
             ))}
