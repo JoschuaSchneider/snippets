@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 
-const Layout = ({ children }) => (
+const Layout = ({ children, condensedHeader = false }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -21,6 +21,7 @@ const Layout = ({ children }) => (
         <Header
           siteTitle={data.site.siteMetadata.title}
           siteDescription={data.site.siteMetadata.description}
+          condensed={condensedHeader}
         />
         <div className="mx-auto max-w-3xl px-5">{children}</div>
         <footer className="mx-auto max-w-3xl px-5 my-8 text-sm flex flex-col items-center">

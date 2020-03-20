@@ -9,7 +9,7 @@ export default ({ data }) => {
   const { body, frontmatter, excerpt } = data.mdx
 
   return (
-    <Layout>
+    <Layout condensedHeader>
       <SEO title={frontmatter.title} description={excerpt} />
       <Link
         to="/"
