@@ -33,15 +33,15 @@ const Index = ({
       {snippets.map(snippet => (
         <Link
           to={snippet.fields.slug}
-          className="rounded bg-white shadow py-4 px-6 border-l-4 border-purple-500 hover:border-purple-700 mb-6"
+          className="relative snippet-post rounded bg-white shadow py-4 px-6 border-l-4 border-purple-500 hover:border-purple-700 mb-6"
         >
-          <small className="block text-xs text-purple-600 mb-1">
+          <small className="block text-xs text-purple-600 mb-1 relative z-10">
             {snippet.frontmatter.date}
           </small>
-          <h3 className="text-gray-900 font-semibold leading-tight">
+          <h3 className="text-gray-900 font-semibold leading-tight relative z-10">
             {snippet.frontmatter.title}
           </h3>
-          <p className="flex flex-wrap mb-1 mt-2">
+          <p className="flex flex-wrap mb-1 mt-2 z-10 relative">
             {snippet.frontmatter.tags.map(tag => (
               <pre
                 key={tag}
@@ -51,12 +51,25 @@ const Index = ({
               </pre>
             ))}
           </p>
-          <p className="text-gray-700">
+          <p className="relative text-gray-700 z-10">
             {snippet.excerpt}{" "}
             <span className="text-purple-600 hover:underline">
               continue reading.
             </span>
           </p>
+          <svg
+            width="300"
+            height="500"
+            viewBox="0 0 300 300"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="snippet-post-svg z-0"
+          >
+            <path
+              d="M284 64.9949L75.2479 0L0 168.281L270.65 197L284 64.9949Z"
+              fill="#9f7aea"
+            />
+          </svg>
         </Link>
       ))}
     </div>
