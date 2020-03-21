@@ -3,6 +3,8 @@ import Layout from "../components/layout"
 import { graphql, Link } from "gatsby"
 import SEO from "../components/seo"
 
+import image_joschua from "../images/joschua.jpg"
+
 const Index = ({
   data: {
     allMdx: { nodes: snippets }
@@ -10,13 +12,22 @@ const Index = ({
 }) => (
   <Layout>
     <SEO title="Browse" />
-    <p className="text-purple-800 mb-6 bg-purple-200 py-3 px-4 rounded">
-      This collection helps me to <b>document</b> often used hooks, components
-      and configurations/setups. I use this as a central database to boost my
-      efficiency as a developer. <br />
-      This helps keeping me (and maybe you) from finding solutions to problems
-      that have already been solved.
-    </p>
+    <div className="flex text-gray-700 mb-6 bg-white py-4 px-6 rounded border border-gray-200">
+      <img
+        src={image_joschua}
+        className="rounded-full w-12 h-12 mr-4 mt-1"
+        alt="Profile Picture of Joschua"
+      />
+      <p className="text-sm text-gray-700">
+        <small className="block text-gray-600 text-sm mb-1">
+          Joschua Schneider
+        </small>
+        This blog-style collection helps me to <b>document</b> often used hooks,
+        functions and configurations/setups. I use this as a central database to{" "}
+        <b>boost my efficiency</b> as a developer and share what I have learned
+        with others.
+      </p>
+    </div>
     <h2 className="text-gray-800 text-xl mb-3">Browse all snippets</h2>
     <div className="flex flex-col">
       {snippets.map(snippet => (
@@ -40,7 +51,12 @@ const Index = ({
               </pre>
             ))}
           </p>
-          <p className="text-gray-700">{snippet.excerpt}</p>
+          <p className="text-gray-700">
+            {snippet.excerpt}{" "}
+            <span className="text-purple-600 hover:underline">
+              continue reading.
+            </span>
+          </p>
         </Link>
       ))}
     </div>
